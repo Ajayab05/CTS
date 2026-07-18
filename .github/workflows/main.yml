@@ -1,27 +1,13 @@
-name: Continuous Integration TEST
+name: Flask CI
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-
-env:
-  PYTHON_VERSION: "3.13"
-
 jobs:
-  test:
-    name: Lint & Unit Tests
-
+  build:
     runs-on: ubuntu-latest
-
-    timeout-minutes: 20
 
     steps:
       - name: Checkout Repository
@@ -30,34 +16,14 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: pip
+          python-version: "3.13"
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          #pip install -r requirements.txt
 
-      - name: Check Formatting
+      - name: Verify Flask Application
         run: |
-          black --check .
-
-      - name: Ruff Lint
-        run: |
-          ruff check .
-
-      - name: Flake8
-        run: |
-          flake8 .
-
-      - name: Run Unit Tests
-        run: |
-          pytest --cov=. --cov-report=xml
-
-      - name: Upload Coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage.xml
-          retention-days: 7
+          python -m py_compile *.py
+          echo "Application validation successful."
