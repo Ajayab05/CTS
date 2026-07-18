@@ -1,14 +1,9 @@
 name: Continuous Integration TEST
 
 on:
-  pull_request:
-    branches:
-      - main
-      - develop
-
   push:
     branches:
-      - develop
+      - main
 
 permissions:
   contents: read
