@@ -1,0 +1,32 @@
+apiVersion: v2
+
+name: flask-crud-api
+
+description: Enterprise Helm Chart for Flask CRUD API
+
+type: application
+
+version: 1.0.0
+
+appVersion: "1.0.0"
+
+kubeVersion: ">=1.33.0"
+
+home: https://github.com/your-org/platform-gitops
+
+sources:
+  - https://github.com/your-org/flask-crud-api
+
+maintainers:
+  - name: Platform Engineering
+    email: platform@example.com
+
+keywords:
+  - flask
+  - kubernetes
+  - helm
+  - argocd
+  - platform
+
+annotations:
+  category: Backends

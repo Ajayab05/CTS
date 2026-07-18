@@ -1,0 +1,7 @@
+Thank you for installing Flask CRUD API.
+
+Release:
+{{ .Release.Name }}
+
+Namespace:
+{{ .Release.Namespace }}
