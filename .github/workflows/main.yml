@@ -46,7 +46,7 @@ jobs:
 
       - name: Check Formatting
         run: |
-          black --check .
+          black check .
 
       - name: Ruff Lint
         run: |
